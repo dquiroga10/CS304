@@ -1,0 +1,177 @@
+\documentclass[11pt]{article}
+
+\usepackage{exscale}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{latexsym}
+\usepackage{times,mathptm}
+\usepackage{epsfig}
+\usepackage{textcomp}
+
+\textwidth 6.5truein          
+\textheight 9.0truein
+\oddsidemargin 0.0in
+\topmargin -0.6in
+
+\parindent 0pt          
+%\parskip 5pt
+%\def\baselinestretch{1.1}
+
+\begin{document}
+
+\begin{LARGE}
+\centerline {\bf CSci 304 Assignment 1}
+\end{LARGE}
+\vskip 0.25cm
+
+\centerline{Due: Thursday, 9/19/19}
+\centerline{Daniel Quiroga}
+
+\begin{enumerate}
+
+\item (15 points) Convert the following decimal values to 12-bit two's complement binary, octal, and hexadecimal.
+\begin{enumerate}
+    \item 367
+    \item 1492
+    \item -773
+    \item -1619
+    \item -2044
+\end{enumerate}{}
+
+Solution:
+
+\begin{table}[h!]
+ \begin{center}
+   \caption{Conversion to decimal work}
+   	\begin{tabular}{l|c|c|c|c|c|c|c|c|c|c|c|r}
+   	\textbf{decimal} & \textbf{-2048} & \textbf{1024} & \textbf{512} & \textbf{256} & \textbf{128} & \textbf{64} & \textbf{32} & \textbf{16} & \textbf{8} & \textbf{4} & \textbf{2} &\textbf{1}\\
+   	
+   	  367 & 0 & 0 & 0 & 1 & 0 &  1 & 1 & 0 & 1 & 1 & 1 & 1\\
+      1492 & 0 & 1 & 0 & 1 & 1 & 1 & 0 & 1 & 0 & 1 & 0 & 0\\
+      -773 & 1 & 1 & 0 & 0 & 1 & 1 & 1 & 1 & 1 & 0 & 1 & 1\\
+      -1619 & 1 & 0 & 0 & 1 & 1 & 0 & 1 & 0 & 1 & 1 & 0 & 1\\
+      -2044 & 1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 & 0\\
+   	
+   	\end{tabular}
+ \end{center}
+\end{table}
+
+\begin{table}[h!]
+  \begin{center}
+    \caption{Binary, Octal, Hexadecimal}
+    \label{tab:Table 1}
+    \begin{tabular}{l|c|c|r} % <-- Alignments: 1st column left, 2nd middle and 3rd right, with vertical lines in between
+      \textbf{Decimal} & \textbf{Binary} & \textbf{Octal} &\textbf{Hexa}\\
+      367 & 000101101111 & 0557 & 16F\\
+      1492 & 010111010100 & 2724 & 5D4 \\
+      -773 & 110011111011 & 6373 & CFB\\ %ask about octal and hexa for negatives
+      -1619 & 100110101101 & 4655 & 9AD\\
+      -2044 & 100000000100 & 4004 & 804\\ 
+      
+    \end{tabular}
+  \end{center}
+\end{table}
+
+For Octal, I grouped up the binary into groups of 3 and then saw what number came out for each group -- same with hex but in groups of 4 *did not have a good way of showing work for it *
+
+
+\item (15 points) Convert the following to decimal.
+\begin{enumerate}
+    \item 1100 1010 (8-bit two's complement)
+    \item $4D AC_{16}$ (unsigned)
+    \item $377_{8}$ (9-bit two’s complement)
+    \item $4211_{5}$ (12-bit two’s complement)
+    \item 1001 0011 0010 (12-bit two’s complement)
+\end{enumerate}
+
+Solution: 
+
+\begin{enumerate}
+	\item 0(1) + 1(2) + 0(4) + 1(8) + 0(16) + 0(32) + 1(64) + 1(-128) = -54
+	\item D = 13, A = 10, C = 12 -- 12(1) + 10(16) + 13(256) + 4(4096) = 19884
+	\item convert to binary: 3 = 011, 7 = 111, 7 = 111\newline 
+	1(1) + 1(2) + 1(4) + 1(8) + 1(16) + 1(32) + 1(64) + 1(128) + 0(-256) = 255 
+	\item 4(125) + 2(25) + 1(5) + 1(1) = 556
+	\item 0(1) + 1(2) + 0(4) + 0(8) + 1(16) + 1(32) + 0(64) + 0(128) + 1(256) + 0(512) + 0(1024) + 1(-2048) = -1742 
+\end{enumerate}
+
+\item (15 points) For a computer with word size of 10 bits using two’s complement, compute the following system values in both binary and decimal.
+\begin{enumerate}
+    \item Number of values
+    \item Min unsigned integer
+    \item Max unsigned integer
+    \item Min integer
+    \item Max integer
+\end{enumerate}{}
+
+Solution: 
+*Used the table in question 1 to get the values for powers of 2 
+\begin{enumerate}
+	\item $2^{10}$ = 1024 
+	\item 00000 00000 = 0
+	\item 11111 11111 = 1023
+	\item 10000 0000 = -512
+	\item 01111 11111 = 511
+\end{enumerate}
+
+\item (20 points) Suppose a = 1101 1001 0101, b = 1010 1110 1001, c = 0010 0011 1101. Compute the following using binary operations assuming 12-bit two’s complement. Express your final an- swers in both binary and hexadecimal.
+
+\begin{enumerate}
+    \item \~{$(a\And a)$}
+    \item $a|b|c$
+    \item $(a\And c)|b$
+     \item \~ {$a\  \^ \  \ b$}
+    \item \~{$((a\And b)\ \^ \ {(b \ | \ c))}$}
+\end{enumerate}{}
+
+Solution: 
+$a = \{0,2,4,7,8,10,11\} \ b = \{0,3,5,6,7,9,11\} \ c = \{0,2,3,4,5,9\}$
+\begin{enumerate}
+	\item $\{1,3,5,6,9\}$ = 0010 0110 1010 = 26A 
+	\item $\{0,2,3,4,5,6,7,8,9,10,11\}$ = 1111 1111 1101 = FFD
+	\item $\{0,2,4\} | \{0,3,5,6,7,9,11\} $ = $\{0,2,3,4,5,6,7,9,11\}$ = 1010 1111 1101 = AFD
+	\item $\{1,3,5,6,9\} \^ \  \ \{0,3,5,6,7,9,11\}$ = $\{ 0,1,7,11\}$ = 1000 1000 0011 = 883  
+	\item $\~ \ \{ \{0,7,11\} \^ \ \{0,2,3,4,5,6,7,9,11 \} \} $ = $\~ \ \{ 2,3,4,5,6,9 \}$ = $\{0,1,7,8,10,11\}$ = 1101 1000 0011 = D83
+\end{enumerate}
+
+\item (20 points) Assuming a, b, and c from problem 4, compute the following using binary opera- tions assuming 12-bit two’s complement, and arithmetic shift where necessary. Express your final answers in both binary and hexadecimal. Also, state whether each involves a positive overflow, a negative overflow, or no overflow.
+\begin{enumerate}
+    \item a+b
+    \item (a$<<$6)+c 
+    \item (c$>>$3)+b 
+    \item b$-$c
+    \item (c$-$a)$<<$4
+\end{enumerate}{}
+
+Solution: 
+
+\begin{enumerate}
+	\item \ \ \ 1101 1001 0101 \newline + 1010 1110 1001 \newline 1 1000 0111 1110 = 1000 0111 1110 hex: 87E no overflow
+	\item \ \ \ 0101 0100 0000 \newline +  0010 0011 1101 \newline 0111 0111 1101  hex: 77D no overflow 
+	\item \ \ \ 0000 0100 0111 \newline + 1010 1110 1001 \newline 1011 0011 0000 hex: B30 no overflow 
+	\item \ \ \ 1010 1110 1001 \newline -0010 0011 1101 \newline 1000 1010 1100 = 8AC no overflow 
+	\item 0010 0011 1101 - 1101 1001 0101 is the same as writing \newline \ \ \ 0010 0011 1101 \newline + 0010 0110 1011 *i just converted the number to the opposite in order to change the sign \newline 0100 1010 1000 $<<$ 4 = 1010 1000 0000 hex: A80 no overflow 
+\end{enumerate}
+
+\item (15 points) Assuming a, b, and c from problem 4, evaluate the following C boolean expres- sions using binary operations that assume 12-bit two’s complement, and logical shift where necessary.
+\begin{enumerate}
+    \item	$(a>0) || (a \And b)$
+    \item $(b<0) \&\& c$
+    \item $(c<0) || !(a \&\& b)$
+    \item $(\texttt{\char`\~} a\  \^ \ b) \& \&  !(\texttt{\char`\~} c\& c)$ 
+    \item $(a>>11)\& \& (b<<11)$
+\end{enumerate}{}
+
+Solution:
+
+\begin{enumerate}
+	\item $0 || \{0,7,11\}$ = 1 =TRUE \newline *second arguement is nonzero therefore true 
+	\item $1 \&\& \{0,2,3,4,5,9\}$ = 1 =TRUE \newline *second arguement is nonzero therefore true 
+	\item $0 || !(1)$ = $0 || 0$ = FALSE \newline *a and b were nonzero therefore second arguement was true but because of the '!' became false 
+	\item $\{1,3,5,6,9\} \^ \  \{0,3,5,6,7,9,11\} \&\& !(0)$ = $\{1,7,11\} \&\& 1$ = 1 = TRUE \newline *first arguement is nonzero therefore true 
+	\item 1111 1111 1111 \&\& 1000 0000 0000 = 1 = TRUE \newline * both arguements are nonzero therefore true 
+\end{enumerate}
+
+\end{enumerate}
+
+\end{document}
